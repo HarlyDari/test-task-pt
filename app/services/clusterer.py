@@ -1,5 +1,5 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import DBSCAN
+from sklearn.ensemble import IsolationForest
 from app.services.parser import SyslogEntry
 from app.models.cluster_response import ClusterResult
 
@@ -15,7 +15,7 @@ class LogClusterer:
                 entry.cluster_id = 0
             return [ClusterResult(cluster_id=0, size=len(entries), examples=[entries[0].message if entries else ""])]
 
-        model = DBSCAN(eps=0.6, min_samples=2, metric="cosine")
+        model = IsolationForest(n_estimators=200, contamination=0.1, random_state=42, n_jobs=-1)
         labels = model.fit_predict(X)
 
         clusters: dict[int, list[SyslogEntry]] = {}
