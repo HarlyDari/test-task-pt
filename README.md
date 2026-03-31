@@ -3,7 +3,7 @@
 # Структура
 
 - `app/` — исходный код FastAPI приложения
-- `data/` — пример логов `sample_syslog.log`
+- `data/` — пример логов
 - `Dockerfile` — образ приложения
 - `docker-compose.yml` — запуск сервиса в контейнере
 - `requirements.txt` — зависимости Python
@@ -19,8 +19,8 @@ docker compose up --build
 2. Перейти к API:
 
 - `http://localhost:8000/health`
-- `http://localhost:8000/sample` — анализ примера
-- `http://localhost:8000/docs` — Swagger UI
+- `http://localhost:8000/sample` - анализ примера
+- `http://localhost:8000/docs` - Swagger UI
 
 ## API
 
