@@ -3,7 +3,6 @@ from fastapi.responses import JSONResponse
 from app.services.parser import SyslogParser
 from app.services.clusterer import LogClusterer
 from app.services.anomaly import AnomalyDetector
-from typing import Optional
 import io
 
 app = FastAPI(
@@ -23,7 +22,7 @@ def health_check():
 
 
 @app.post("/analyze")
-async def analyze_logs(file: Optional[UploadFile] = File(None), raw_logs: Optional[str] = None):
+async def analyze_logs(file: UploadFile = File(None), raw_logs: str = None):
     if file is None and raw_logs is None:
         raise HTTPException(status_code=400, detail="Provide raw_logs or upload a file.")
 
